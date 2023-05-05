@@ -1,20 +1,20 @@
-﻿using LivrariaControleEmprestimo.DATA.Models;
+﻿using LivrariaControleEmprestimo.DATA.Interfaces;
+using LivrariaControleEmprestimo.DATA.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static LivrariaControleEmprestimo.DATA.Interfaces.IRepositoryModel;
-
 namespace LivrariaControleEmprestimo.DATA.Repositories
-{   
+{
 
     public class RepositoryBase<T> : IRepositoryModel<T>, IDisposable where T : class
     {
         protected ControleEmprestimoLivroContext _Contexto;
         public bool _SaveChanges = true;
 
-        public RepositoryBase(bool SaveChanges) {
-        _SaveChanges = SaveChanges;
+        public RepositoryBase(bool SaveChanges = true)
+        {
+            _SaveChanges = SaveChanges;
             _Contexto = new ControleEmprestimoLivroContext();
         }
 
