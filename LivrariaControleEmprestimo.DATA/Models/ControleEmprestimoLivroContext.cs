@@ -17,9 +17,9 @@ namespace LivrariaControleEmprestimo.DATA.Models
         {
         }
 
-        public virtual DbSet<Cliente> Cliente { get; set; }
-        public virtual DbSet<Livro> Livro { get; set; }
-        public virtual DbSet<LivroClienteEmprestimo> LivroClienteEmprestimo { get; set; }
+        public virtual DbSet<TbCliente> TbCliente { get; set; }
+        public virtual DbSet<TbLivro> TbLivro { get; set; }
+        public virtual DbSet<TbLivroClienteEmprestimo> TbLivroClienteEmprestimo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,45 +32,53 @@ namespace LivrariaControleEmprestimo.DATA.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Cliente>(entity =>
+            modelBuilder.Entity<TbCliente>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Bairro).IsUnicode(false);
+                entity.Property(e => e.CliBairro).IsUnicode(false);
 
-                entity.Property(e => e.Cidade).IsUnicode(false);
+                entity.Property(e => e.CliCidade).IsUnicode(false);
 
-                entity.Property(e => e.Cpf).IsUnicode(false);
+                entity.Property(e => e.CliCpf).IsUnicode(false);
 
-                entity.Property(e => e.Endereco).IsUnicode(false);
+                entity.Property(e => e.CliEndereco).IsUnicode(false);
 
-                entity.Property(e => e.Nome).IsUnicode(false);
+                entity.Property(e => e.CliNome).IsUnicode(false);
+
+                entity.Property(e => e.CliNumero).IsUnicode(false);
+
+                entity.Property(e => e.CliTelefoneCelular).IsUnicode(false);
+
+                entity.Property(e => e.CliTelefoneFixo).IsUnicode(false);
             });
 
-            modelBuilder.Entity<Livro>(entity =>
+            modelBuilder.Entity<TbLivro>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Autor).IsUnicode(false);
+                entity.Property(e => e.LivroAutor).IsUnicode(false);
 
-                entity.Property(e => e.Editora).IsUnicode(false);
+                entity.Property(e => e.LivroEdicao).IsUnicode(false);
 
-                entity.Property(e => e.Nome).IsUnicode(false);
+                entity.Property(e => e.LivroEditora).IsUnicode(false);
+
+                entity.Property(e => e.LivroNome).IsUnicode(false);
             });
 
-            modelBuilder.Entity<LivroClienteEmprestimo>(entity =>
+            modelBuilder.Entity<TbLivroClienteEmprestimo>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.LivroClienteEmprestimo)
-                    .HasForeignKey<LivroClienteEmprestimo>(d => d.Id)
+                entity.HasOne(d => d.LceIdClienteNavigation)
+                    .WithMany(p => p.TbLivroClienteEmprestimo)
+                    .HasForeignKey(d => d.LceIdCliente)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Livro_Cliente_Emprestimo_Cliente");
 
-                entity.HasOne(d => d.Id1)
-                    .WithOne(p => p.LivroClienteEmprestimo)
-                    .HasForeignKey<LivroClienteEmprestimo>(d => d.Id)
+                entity.HasOne(d => d.LceIdLivroNavigation)
+                    .WithMany(p => p.TbLivroClienteEmprestimo)
+                    .HasForeignKey(d => d.LceIdLivro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Livro_Cliente_Emprestimo_Livro");
             });

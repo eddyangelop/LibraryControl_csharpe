@@ -5,7 +5,8 @@ using System.Text;
 
 namespace LivrariaControleEmprestimo.DATA.Interfaces
 {
-    public interface IRepositoryCliente : IRepositoryModel<Cliente>
+    public interface IRepositoryCliente : IRepositoryModel<TbCliente>
     {
+
     }
 }
