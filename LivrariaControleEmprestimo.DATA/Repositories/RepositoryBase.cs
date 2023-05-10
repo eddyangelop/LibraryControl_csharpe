@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 namespace LivrariaControleEmprestimo.DATA.Repositories
 {
-
     public class RepositoryBase<T> : IRepositoryModel<T>, IDisposable where T : class
     {
         protected ControleEmprestimoLivroContext _Contexto;
@@ -14,10 +15,10 @@ namespace LivrariaControleEmprestimo.DATA.Repositories
 
         public RepositoryBase(bool SaveChanges = true)
         {
+
             _SaveChanges = SaveChanges;
             _Contexto = new ControleEmprestimoLivroContext();
         }
-
 
         public T Alterar(T objeto)
         {
@@ -27,6 +28,7 @@ namespace LivrariaControleEmprestimo.DATA.Repositories
             {
                 _Contexto.SaveChanges();
             }
+
             return objeto;
         }
 
@@ -37,26 +39,33 @@ namespace LivrariaControleEmprestimo.DATA.Repositories
 
         public void Excluir(T objeto)
         {
-            _Contexto.Set<T>().Remove(objeto);
+           _Contexto.Set<T>().Remove(objeto);
+
             if (_SaveChanges)
             {
                 _Contexto.SaveChanges();
             }
+           
         }
 
         public void Excluir(params object[] variavel)
         {
-            var obj = selecionarPK(variavel);
-            Excluir(obj);
+            var obj = SelecionarPk(variavel);
+            if (obj != null)
+            {
+                Excluir(obj);
+            }
         }
 
         public T Incluir(T objeto)
         {
             _Contexto.Set<T>().Add(objeto);
+
             if (_SaveChanges)
             {
                 _Contexto.SaveChanges();
             }
+
             return objeto;
         }
 
@@ -65,7 +74,7 @@ namespace LivrariaControleEmprestimo.DATA.Repositories
             _Contexto.SaveChanges();
         }
 
-        public T selecionarPK(params object[] variavel)
+        public T SelecionarPk(params object[] variavel)
         {
             return _Contexto.Set<T>().Find(variavel);
         }
@@ -76,4 +85,3 @@ namespace LivrariaControleEmprestimo.DATA.Repositories
         }
     }
 }
-
