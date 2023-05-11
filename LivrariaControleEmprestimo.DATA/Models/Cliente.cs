@@ -9,31 +9,48 @@ namespace LivrariaControleEmprestimo.DATA.Models
 {
     public partial class Cliente
     {
+        public Cliente()
+        {
+            LivroClienteEmprestimo = new HashSet<LivroClienteEmprestimo>();
+        }
+
         [Key]
         [Column("id")]
         public int Id { get; set; }
         [Required]
-        [Column("CPF")]
+        [Column("cliCPF")]
         [StringLength(14)]
-        public string Cpf { get; set; }
+        public string CliCpf { get; set; }
         [Required]
-        [Column("nome")]
+        [Column("cliNome")]
+        [StringLength(200)]
+        public string CliNome { get; set; }
+        [Required]
+        [Column("cliEndereco")]
+        [StringLength(200)]
+        public string CliEndereco { get; set; }
+        [Required]
+        [Column("cliCidade")]
         [StringLength(100)]
-        public string Nome { get; set; }
+        public string CliCidade { get; set; }
         [Required]
-        [Column("endereco")]
-        [StringLength(50)]
-        public string Endereco { get; set; }
+        [Column("cliBairro")]
+        [StringLength(100)]
+        public string CliBairro { get; set; }
         [Required]
-        [Column("cidade")]
+        [Column("cliNumero")]
         [StringLength(50)]
-        public string Cidade { get; set; }
+        public string CliNumero { get; set; }
         [Required]
-        [Column("bairro")]
-        [StringLength(50)]
-        public string Bairro { get; set; }
+        [Column("cliTelefoneCelular")]
+        [StringLength(14)]
+        public string CliTelefoneCelular { get; set; }
+        [Required]
+        [Column("cliTelefoneFixo")]
+        [StringLength(13)]
+        public string CliTelefoneFixo { get; set; }
 
-        [InverseProperty("IdNavigation")]
-        public virtual LivroClienteEmprestimo LivroClienteEmprestimo { get; set; }
+        [InverseProperty("LceIdClienteNavigation")]
+        public virtual ICollection<LivroClienteEmprestimo> LivroClienteEmprestimo { get; set; }
     }
 }

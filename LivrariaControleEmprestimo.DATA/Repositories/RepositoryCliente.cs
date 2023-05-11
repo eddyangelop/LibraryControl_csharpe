@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LivrariaControleEmprestimo.DATA.Repositories
 {
-    internal class RepositoryCliente : RepositoryBase<TbCliente>, IRepositoryCliente
+    public class RepositoryCliente : RepositoryBase<Cliente>, IRepositoryCliente
     {
         public RepositoryCliente(bool SaveChanges = true) : base(SaveChanges)
         {

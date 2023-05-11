@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LivrariaControleEmprestimo.DATA.Repositories
 {
-    public class RepositoryLivro : RepositoryBase<TbLivro>, IRepositoryLivro
+    public class RepositoryLivro : RepositoryBase<Livro>, IRepositoryLivro
     {
         public RepositoryLivro(bool SaveChanges = true) : base(SaveChanges)
         {

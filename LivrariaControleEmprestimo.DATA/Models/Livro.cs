@@ -9,23 +9,34 @@ namespace LivrariaControleEmprestimo.DATA.Models
 {
     public partial class Livro
     {
+        public Livro()
+        {
+            LivroClienteEmprestimo = new HashSet<LivroClienteEmprestimo>();
+        }
+
         [Key]
         [Column("id")]
         public int Id { get; set; }
         [Required]
-        [Column("nome")]
+        [Column("livroNome")]
         [StringLength(50)]
-        public string Nome { get; set; }
+        public string LivroNome { get; set; }
         [Required]
-        [Column("autor")]
+        [Column("livroAutor")]
+        [StringLength(200)]
+        public string LivroAutor { get; set; }
+        [Required]
+        [Column("livroEditora")]
         [StringLength(100)]
-        public string Autor { get; set; }
+        public string LivroEditora { get; set; }
+        [Column("livroAnoPublicacao", TypeName = "datetime")]
+        public DateTime LivroAnoPublicacao { get; set; }
         [Required]
-        [Column("editora")]
+        [Column("livroEdicao")]
         [StringLength(50)]
-        public string Editora { get; set; }
+        public string LivroEdicao { get; set; }
 
-        [InverseProperty("Id1")]
-        public virtual LivroClienteEmprestimo LivroClienteEmprestimo { get; set; }
+        [InverseProperty("LceIdLivroNavigation")]
+        public virtual ICollection<LivroClienteEmprestimo> LivroClienteEmprestimo { get; set; }
     }
 }
