@@ -17,9 +17,9 @@ namespace LivrariaControleEmprestimo.DATA.Models
         {
         }
 
-        public virtual DbSet<TbCliente> TbCliente { get; set; }
-        public virtual DbSet<TbLivro> TbLivro { get; set; }
-        public virtual DbSet<TbLivroClienteEmprestimo> TbLivroClienteEmprestimo { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Livro> Livro { get; set; }
+        public virtual DbSet<LivroClienteEmprestimo> LivroClienteEmprestimo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,7 +32,7 @@ namespace LivrariaControleEmprestimo.DATA.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TbCliente>(entity =>
+            modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -53,7 +53,7 @@ namespace LivrariaControleEmprestimo.DATA.Models
                 entity.Property(e => e.CliTelefoneFixo).IsUnicode(false);
             });
 
-            modelBuilder.Entity<TbLivro>(entity =>
+            modelBuilder.Entity<Livro>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -66,18 +66,18 @@ namespace LivrariaControleEmprestimo.DATA.Models
                 entity.Property(e => e.LivroNome).IsUnicode(false);
             });
 
-            modelBuilder.Entity<TbLivroClienteEmprestimo>(entity =>
+            modelBuilder.Entity<LivroClienteEmprestimo>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.LceIdClienteNavigation)
-                    .WithMany(p => p.TbLivroClienteEmprestimo)
+                    .WithMany(p => p.LivroClienteEmprestimo)
                     .HasForeignKey(d => d.LceIdCliente)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Livro_Cliente_Emprestimo_Cliente");
 
                 entity.HasOne(d => d.LceIdLivroNavigation)
-                    .WithMany(p => p.TbLivroClienteEmprestimo)
+                    .WithMany(p => p.LivroClienteEmprestimo)
                     .HasForeignKey(d => d.LceIdLivro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Livro_Cliente_Emprestimo_Livro");
