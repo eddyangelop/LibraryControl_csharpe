@@ -7,9 +7,9 @@
 <h1>Clientes</h1>
 
 <p>
-    <a class=" btn btn-primary" asp-action="Create">Novo usuário</a>
+    <a class=" btn btn-primary" asp-action="Create">Novo cliente</a>
 </p>
-<table class="table">
+<table id="myTable" class="table">
     <thead>
         <tr>
             <th>
@@ -18,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CliNome)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.CliTelefoneCelular)
             </th>
@@ -29,27 +29,37 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CliCpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CliNome)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.CliTelefoneCelular)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CliTelefoneFixo)
-            </td>
-            <td>
-                <a asp-action="Edit" class="btn btn-success m-1" asp-route-id="@item.Id">Alterar</a>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CliCpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CliNome)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CliTelefoneCelular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CliTelefoneFixo)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-success m-1" asp-route-id="@item.Id">Alterar</a>
                     <a asp-action="Details" class="btn btn-primary  m-1" asp-route-id="@item.Id">Detalhes</a>
                     <a asp-action="Delete" class="btn btn-danger  m-1" asp-route-id="@item.Id">Excluir</a>
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
