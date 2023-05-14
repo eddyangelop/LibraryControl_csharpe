@@ -34,8 +34,6 @@ namespace LivrariaControleEmprestimo.DATA.Models
         {
             modelBuilder.Entity<Cliente>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.CliBairro).IsUnicode(false);
 
                 entity.Property(e => e.CliCidade).IsUnicode(false);
@@ -55,8 +53,6 @@ namespace LivrariaControleEmprestimo.DATA.Models
 
             modelBuilder.Entity<Livro>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.LivroAutor).IsUnicode(false);
 
                 entity.Property(e => e.LivroEdicao).IsUnicode(false);
@@ -68,19 +64,17 @@ namespace LivrariaControleEmprestimo.DATA.Models
 
             modelBuilder.Entity<LivroClienteEmprestimo>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.LceIdClienteNavigation)
                     .WithMany(p => p.LivroClienteEmprestimo)
                     .HasForeignKey(d => d.LceIdCliente)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Livro_Cliente_Emprestimo_Cliente");
+                    .HasConstraintName("FK_LivroClienteEmprestimo_Cliente");
 
                 entity.HasOne(d => d.LceIdLivroNavigation)
                     .WithMany(p => p.LivroClienteEmprestimo)
                     .HasForeignKey(d => d.LceIdLivro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Livro_Cliente_Emprestimo_Livro");
+                    .HasConstraintName("FK_LivroClienteEmprestimo_Livro");
             });
 
             OnModelCreatingPartial(modelBuilder);
