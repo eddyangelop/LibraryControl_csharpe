@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LivrariaControleEmprestimo.DATA.Models
 {
-    [Table("Livro_Cliente_Emprestimo")]
     public partial class LivroClienteEmprestimo
     {
         [Key]

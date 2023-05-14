@@ -23,7 +23,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Livro_Cliente_Emprestimo]",
+         "Name": "[dbo].[LivroClienteEmprestimo]",
          "ObjectType": 0
       }
    ],
