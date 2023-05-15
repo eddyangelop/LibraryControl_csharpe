@@ -241,3 +241,4 @@ C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControl
 C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\LivrariaControleEmprestimo.WEB.genruntimeconfig.cache
 C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Create.cshtml.g.cs
 C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Details.cshtml.g.cs
+C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Edit.cshtml.g.cs

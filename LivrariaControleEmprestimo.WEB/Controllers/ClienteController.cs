@@ -15,13 +15,13 @@ namespace LivrariaControleEmprestimo.WEB.Controllers
             return View(oListCliente);
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Cliente model) 
+        public IActionResult Create(Cliente model)
         {
             if (!ModelState.IsValid)
             {
@@ -30,13 +30,29 @@ namespace LivrariaControleEmprestimo.WEB.Controllers
 
             oClienteService.oRepositoryCliente.Incluir(model);
 
-            return RedirectToAction("Index");           
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Details(int id) 
+        public ActionResult Details(int id)
         {
             Cliente oCliente = oClienteService.oRepositoryCliente.SelecionarPk(id);
             return View(oCliente);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Cliente oCliente = oClienteService.oRepositoryCliente.SelecionarPk(id);
+            return View(oCliente);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Cliente model)
+        {
+            Cliente oCliente = oClienteService.oRepositoryCliente.Alterar(model);
+
+            int id = oCliente.Id;
+
+            return RedirectToAction("Details", new { id });
         }
 
 
