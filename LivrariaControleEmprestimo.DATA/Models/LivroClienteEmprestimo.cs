@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,11 +14,14 @@ namespace LivrariaControleEmprestimo.DATA.Models
         [Column("id")]
         public int Id { get; set; }
         public int LceIdCliente { get; set; }
+
         public int LceIdLivro { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime LceDataEmprestimo { get; set; }
         [Column(TypeName = "datetime")]
+        [DisplayName("DATA EMPRESTIMO")]
         public DateTime LceDataEntrega { get; set; }
+        [DisplayName("DATA ENTREGA")]
         public bool LceEntregue { get; set; }
 
         [ForeignKey(nameof(LceIdCliente))]
