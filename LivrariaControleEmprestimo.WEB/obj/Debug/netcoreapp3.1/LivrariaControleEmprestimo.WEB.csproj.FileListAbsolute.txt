@@ -242,3 +242,8 @@ C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControl
 C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Create.cshtml.g.cs
 C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Details.cshtml.g.cs
 C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Edit.cshtml.g.cs
+C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Livro\Index.cshtml.g.cs
+C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Livro\Create.cshtml.g.cs
+C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Livro\Details.cshtml.g.cs
+C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Livro\Edit.cshtml.g.cs
+C:\Users\edson\Downloads\Documents\Dotnet\LibraryControl_csharpe\LivrariaControleEmprestimo.WEB\obj\Debug\netcoreapp3.1\Razor\Views\Livro\Delete.cshtml.g.cs
