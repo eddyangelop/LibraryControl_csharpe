@@ -7,9 +7,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LivrariaControleEmprestimo.DATA.Models
 {
-    public partial class LivroClienteEmprestimo
+    public partial class VwLivroClienteEmprestimo
     {
-        [Key]
+        [Required]
+        [Column("cliCPF")]
+        [StringLength(14)]
+        public string CliCpf { get; set; }
+        [Required]
+        [Column("cliNome")]
+        [StringLength(200)]
+        public string CliNome { get; set; }
+        [Required]
+        [Column("livroNome")]
+        [StringLength(50)]
+        public string LivroNome { get; set; }
         [Column("id")]
         public int Id { get; set; }
         public int LceIdCliente { get; set; }
@@ -19,12 +30,5 @@ namespace LivrariaControleEmprestimo.DATA.Models
         [Column(TypeName = "datetime")]
         public DateTime LceDataEntrega { get; set; }
         public bool LceEntregue { get; set; }
-
-        [ForeignKey(nameof(LceIdCliente))]
-        [InverseProperty(nameof(Cliente.LivroClienteEmprestimo))]
-        public virtual Cliente LceIdClienteNavigation { get; set; }
-        [ForeignKey(nameof(LceIdLivro))]
-        [InverseProperty(nameof(Livro.LivroClienteEmprestimo))]
-        public virtual Livro LceIdLivroNavigation { get; set; }
     }
 }

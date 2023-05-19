@@ -2,7 +2,6 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,25 +20,20 @@ namespace LivrariaControleEmprestimo.DATA.Models
         [Required]
         [Column("livroNome")]
         [StringLength(50)]
-        [DisplayName("NOME")]
         public string LivroNome { get; set; }
         [Required]
         [Column("livroAutor")]
         [StringLength(200)]
-        [DisplayName("AUTOR")]
         public string LivroAutor { get; set; }
         [Required]
         [Column("livroEditora")]
         [StringLength(100)]
-        [DisplayName("EDITORA")]
         public string LivroEditora { get; set; }
         [Column("livroAnoPublicacao", TypeName = "datetime")]
-        [DisplayName("DATA DE PUBLICAÇÃO")]
         public DateTime LivroAnoPublicacao { get; set; }
         [Required]
         [Column("livroEdicao")]
         [StringLength(50)]
-        [DisplayName("EDIÇÃO")]
         public string LivroEdicao { get; set; }
 
         [InverseProperty("LceIdLivroNavigation")]

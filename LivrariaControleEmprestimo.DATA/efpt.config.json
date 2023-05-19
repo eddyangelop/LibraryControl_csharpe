@@ -25,6 +25,10 @@
       {
          "Name": "[dbo].[LivroClienteEmprestimo]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VW_LivroClienteEmprestimo]",
+         "ObjectType": 3
       }
    ],
    "UiHint": "laptop-n3kbhkl3.ControleEmprestimoLivro.dbo",
