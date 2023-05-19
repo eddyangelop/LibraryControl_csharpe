@@ -20,6 +20,7 @@ namespace LivrariaControleEmprestimo.DATA.Models
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Livro> Livro { get; set; }
         public virtual DbSet<LivroClienteEmprestimo> LivroClienteEmprestimo { get; set; }
+        public virtual DbSet<VwLivroClienteEmprestimo> VwLivroClienteEmprestimo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -75,6 +76,18 @@ namespace LivrariaControleEmprestimo.DATA.Models
                     .HasForeignKey(d => d.LceIdLivro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LivroClienteEmprestimo_Livro");
+            });
+
+            modelBuilder.Entity<VwLivroClienteEmprestimo>(entity =>
+            {
+
+                entity.ToView("VW_LivroClienteEmprestimo");
+
+                entity.Property(e => e.CliCpf).IsUnicode(false);
+
+                entity.Property(e => e.CliNome).IsUnicode(false);
+
+                entity.Property(e => e.LivroNome).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

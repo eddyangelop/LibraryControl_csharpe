@@ -1,13 +1,13 @@
-﻿@model IEnumerable<LivrariaControleEmprestimo.DATA.Models.Cliente>
+﻿@model IEnumerable<LivrariaControleEmprestimo.DATA.Models.VwLivroClienteEmprestimo>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Clientes</h1>
+<h1>Emprestimos</h1>
 
 <p>
-    <a class=" btn btn-primary" asp-action="Create">Novo cliente</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table id="myTable" class="table">
     <thead>
@@ -18,12 +18,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.CliNome)
             </th>
-
             <th>
-                @Html.DisplayNameFor(model => model.CliTelefoneCelular)
+                @Html.DisplayNameFor(model => model.LivroNome)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.LceDataEmprestimo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CliTelefoneFixo)
+                @Html.DisplayNameFor(model => model.LceDataEntrega)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LceEntregue)
             </th>
             <th></th>
         </tr>
@@ -38,17 +43,22 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CliNome)
                 </td>
-
                 <td>
-                    @Html.DisplayFor(modelItem => item.CliTelefoneCelular)
+                    @Html.DisplayFor(modelItem => item.LivroNome)
+                </td>               
+                <td>
+                    @Html.DisplayFor(modelItem => item.LceDataEmprestimo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CliTelefoneFixo)
+                    @Html.DisplayFor(modelItem => item.LceDataEntrega)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LceEntregue)
                 </td>
                 <td class="row">
                     <a asp-action="Edit" class="btn btn-success m-1" asp-route-id="@item.Id">Alterar</a>
                     <a asp-action="Details" class="btn btn-primary  m-1" asp-route-id="@item.Id">Detalhes</a>
-                    
+
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#DeleteModal-@item.Id">
@@ -66,7 +76,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Deseja realmente excluir cliente @item.CliNome ?
+                                    Deseja realmente excluir o emprestimo do cliente @item.CliNome ?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
