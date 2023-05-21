@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LivrariaControleEmprestimo.DATA.Models.VwLivroClienteEmprestimo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Emprestimos";
 }
 
 <h1>Emprestimos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class=" btn btn-primary" asp-action="Create">Novo emprestimo</a>
 </p>
 <table id="myTable" class="table">
     <thead>
@@ -20,7 +20,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LivroNome)
-            </th>            
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.LceDataEmprestimo)
             </th>
@@ -34,27 +34,26 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CliCpf)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CliNome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LivroNome)
-                </td>               
-                <td>
-                    @Html.DisplayFor(modelItem => item.LceDataEmprestimo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LceDataEntrega)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LceEntregue)
-                </td>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CliCpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CliNome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivroNome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LceDataEmprestimo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LceDataEntrega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LceEntregue)
+            </td>
                 <td class="row">
                     <a asp-action="Edit" class="btn btn-success m-1" asp-route-id="@item.Id">Alterar</a>
                     <a asp-action="Details" class="btn btn-primary  m-1" asp-route-id="@item.Id">Detalhes</a>
@@ -76,7 +75,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Deseja realmente excluir o emprestimo do cliente @item.CliNome ?
+                                    Deseja realmente excluir o emprestimo @item.CliNome ?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
@@ -87,8 +86,8 @@
                     </div>
 
                 </td>
-            </tr>
-        }
+        </tr>
+}
     </tbody>
 </table>
 
