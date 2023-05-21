@@ -1,5 +1,6 @@
 ﻿using LivrariaControleEmprestimo.DATA.Models;
 using LivrariaControleEmprestimo.DATA.Services;
+using LivrariaControleEmprestimo.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -10,25 +11,22 @@ namespace LivrariaControleEmprestimo.WEB.Controllers
         private LivroClienteEmprestimoService oEmprestimoService = new LivroClienteEmprestimoService();
         public IActionResult Index()
         {
-            List<VwLivroClienteEmprestimo> oListVwLivroClienteEmprestimo = oEmprestimoService.oRepositoryVmClienteEmprestimo.SelecionarTodos();
+            List<VwLivroClienteEmprestimo> oListVwLivroClienteEmprestimo = oEmprestimoService.oRepositoryVwClienteEmprestimo.SelecionarTodos();
                 return View(oListVwLivroClienteEmprestimo);
         }
 
         public IActionResult Create() 
         {
-            return View();
+            EmprestimoViewModel oEmprestimoViewModel = new EmprestimoViewModel();
+            List<Livro> oListLivro = oEmprestimoService.oRepositoryLivro.SelecionarTodos();
+            List<Cliente> oListCliente = oEmprestimoService.oRepositoryCliente.SelecionarTodos();
+
+            oEmprestimoViewModel.oListCliente = oListCliente;
+            oEmprestimoViewModel.oListLivro = oListLivro;
+
+
+            return View(oEmprestimoViewModel);
         }
 
-        [HttpPost]
-        public IActionResult Create(VwLivroClienteEmprestimo model )
-        {
-            if (!ModelState.IsValid) 
-            {
-                return View();
-            }
-            oEmprestimoService.oRepositoryVmClienteEmprestimo.Incluir(model);
-
-            return RedirectToAction("Index");
-        }
     }
 }
