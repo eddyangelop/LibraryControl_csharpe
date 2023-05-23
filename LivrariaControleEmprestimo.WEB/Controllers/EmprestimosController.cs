@@ -2,6 +2,7 @@
 using LivrariaControleEmprestimo.DATA.Services;
 using LivrariaControleEmprestimo.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace LivrariaControleEmprestimo.WEB.Controllers
@@ -12,10 +13,10 @@ namespace LivrariaControleEmprestimo.WEB.Controllers
         public IActionResult Index()
         {
             List<VwLivroClienteEmprestimo> oListVwLivroClienteEmprestimo = oEmprestimoService.oRepositoryVwClienteEmprestimo.SelecionarTodos();
-                return View(oListVwLivroClienteEmprestimo);
+            return View(oListVwLivroClienteEmprestimo);
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             EmprestimoViewModel oEmprestimoViewModel = new EmprestimoViewModel();
             List<Livro> oListLivro = oEmprestimoService.oRepositoryLivro.SelecionarTodos();
@@ -24,8 +25,31 @@ namespace LivrariaControleEmprestimo.WEB.Controllers
             oEmprestimoViewModel.oListCliente = oListCliente;
             oEmprestimoViewModel.oListLivro = oListLivro;
 
+            oEmprestimoViewModel.dataEmprestimo = DateTime.Now;
+            oEmprestimoViewModel.dataEntrega = DateTime.Now.AddDays(7);
+
 
             return View(oEmprestimoViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Create(EmprestimoViewModel oEmprestimoViewModel)
+        {
+            LivroClienteEmprestimo oLivroClienteEmprestimo = new LivroClienteEmprestimo();
+
+            oLivroClienteEmprestimo.LceDataEmprestimo = oEmprestimoViewModel.dataEmprestimo;
+            oLivroClienteEmprestimo.LceDataEntrega = oEmprestimoViewModel.dataEntrega;
+            oLivroClienteEmprestimo.LceEntregue = false;
+            oLivroClienteEmprestimo.LceIdCliente = oEmprestimoViewModel.idCliente;
+            oLivroClienteEmprestimo.LceIdLivro = oEmprestimoViewModel.idLivro;
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            oEmprestimoService.oRepositoryLivroClienteEmprestimo.Incluir(oLivroClienteEmprestimo);
+            return RedirectToAction("Index");
         }
 
     }

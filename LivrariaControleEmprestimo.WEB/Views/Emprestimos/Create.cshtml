@@ -16,11 +16,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div hidden class="form-group">
-                <input asp-for="IdCliente" class="form-control" />
+                <input id="idCliente" asp-for="idCliente" class="form-control" />
             </div>
 
             <div hidden class="form-group">
-                <input asp-for="IdLivro" class="form-control" />
+                <input id="idLivro" asp-for="idLivro" class="form-control" />
             </div>
 
             <div class="card">
@@ -49,7 +49,7 @@
                         <tbody>
                             @foreach (var item in Model.oListCliente)
                             {
-                                <tr>
+                                <tr onclick="passIdCliente('@item.Id')">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CliCpf)
                                     </td>
@@ -98,7 +98,7 @@
                         <tbody>
                             @foreach (var item in Model.oListLivro)
                             {
-                                <tr>
+                                <tr onclick="passIdLivro('@item.Id')">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.LivroNome)
                                     </td>
@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </div>
-            <br />
+            <br /> 
             <div class="form-group">
                 <input type="submit" value="Incluir" class="btn btn-success" />
             </div>
@@ -190,5 +190,15 @@
 
 
         });
+
+
+        function passIdCliente(idCliente){
+            document.getElementById('idCliente').value = idCliente;
+        }
+
+        function passIdLivro(idLivro){
+            document.getElementById('idLivro').value = idLivro;
+        }
+
     </script>
 }
