@@ -7,7 +7,7 @@
 <h1>Emprestimos</h1>
 
 <p>
-    <a class=" btn btn-primary" asp-action="Create">Novo empréstimo</a>
+    <a class=" btn btn-primary" asp-action="Create"><i class="fa fa-plus-circle"></i> Novo empréstimo</a>
 </p>
 <table id="myTable" class="table">
     <thead>
@@ -46,24 +46,28 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.LivroNome)
                 </td>
-                <td>
+                @{
+                 var styleStatusEmprestimo = "text-white bg-secondary";
+                }
+               
+                <td class="@styleStatusEmprestimo">
                     @Html.DisplayFor(modelItem => item.LceDataEmprestimo)
                 </td>
 
                 @{
-                    var styleStatus = "text-white bg-success";
+                    var styleStatusEntrega = "text-white bg-success";
                     if (DateTime.Now.Date > item.LceDataEntrega.Date)
                     {
-                        styleStatus = "text-white bg-danger";
+                        styleStatusEntrega = "text-white bg-danger";
 
                     }
                     else if (DateTime.Now.Date.Equals(item.LceDataEntrega.Date))
                     {
-                        styleStatus = "bg-warning";
+                        styleStatusEntrega = "bg-warning";
                     }
                 }
 
-                <td class="@styleStatus">
+                <td class="@styleStatusEntrega">
 
                     @Html.DisplayFor(modelItem => item.LceDataEntrega)
                 </td>
@@ -71,13 +75,13 @@
                     @Html.DisplayFor(modelItem => item.LceEntregue)
                 </td>
                 <td class="row">
-                    <a asp-action="Edit" class="btn btn-success m-1" asp-route-id="@item.Id">Alterar</a>
-                    <a asp-action="Details" class="btn btn-primary  m-1" asp-route-id="@item.Id">Detalhes</a>
+                    <a asp-action="Edit" class="btn btn-primary m-1" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                    <a asp-action="Details" class="btn btn-success m-1" asp-route-id="@item.Id"><i class="fa fa-search"></i></a>
 
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#DeleteModal-@item.Id">
-                        Excluir
+                        <i class="fa fa-trash">Excluir</i>
                     </button>
 
                     <!-- Modal -->
