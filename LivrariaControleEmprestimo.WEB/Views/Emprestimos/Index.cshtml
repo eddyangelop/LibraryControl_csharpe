@@ -46,26 +46,36 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.LivroNome)
                 </td>
+
                 @{
-                 var styleStatusEmprestimo = "text-white bg-secondary";
+                    var styleStatusEmprestimo = "text-white bg-secondary";
                 }
-               
+
                 <td class="@styleStatusEmprestimo">
                     @Html.DisplayFor(modelItem => item.LceDataEmprestimo)
                 </td>
 
                 @{
                     var styleStatusEntrega = "text-white bg-success";
-                    if (DateTime.Now.Date > item.LceDataEntrega.Date)
-                    {
-                        styleStatusEntrega = "text-white bg-danger";
 
-                    }
-                    else if (DateTime.Now.Date.Equals(item.LceDataEntrega.Date))
+                    if (item.LceEntregue == true)
                     {
-                        styleStatusEntrega = "bg-warning";
+                        styleStatusEntrega = "text-white bg-secondary";
+                    }
+                    else
+                    {
+                        if (DateTime.Now.Date > item.LceDataEntrega.Date)
+                        {
+                            styleStatusEntrega = "text-white bg-danger";
+
+                        }
+                        else if (DateTime.Now.Date.Equals(item.LceDataEntrega.Date))
+                        {
+                            styleStatusEntrega = "bg-warning";
+                        }
                     }
                 }
+
 
                 <td class="@styleStatusEntrega">
 
