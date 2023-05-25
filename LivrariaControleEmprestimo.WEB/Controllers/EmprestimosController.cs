@@ -36,16 +36,9 @@ namespace LivrariaControleEmprestimo.WEB.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(EmprestimoViewModel oEmprestimoViewModel)
+        public IActionResult Create(LivroClienteEmprestimo oLivroClienteEmprestimo)
         {
-            LivroClienteEmprestimo oLivroClienteEmprestimo = new LivroClienteEmprestimo();
-
-            oLivroClienteEmprestimo.LceDataEmprestimo = oEmprestimoViewModel.dataEmprestimo;
-            oLivroClienteEmprestimo.LceDataEntrega = oEmprestimoViewModel.dataEntrega;
-            oLivroClienteEmprestimo.LceEntregue = false;
-            oLivroClienteEmprestimo.LceIdCliente = oEmprestimoViewModel.idCliente;
-            oLivroClienteEmprestimo.LceIdLivro = oEmprestimoViewModel.idLivro;
-
+            
             if (!ModelState.IsValid)
             {
                 return View();
