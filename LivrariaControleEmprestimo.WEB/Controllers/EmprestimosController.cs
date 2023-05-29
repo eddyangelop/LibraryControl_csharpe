@@ -77,13 +77,7 @@ namespace LivrariaControleEmprestimo.WEB.Controllers
 
             return RedirectToAction("Index");
         }
-
-        public IActionResult Details(int id) 
-        {            
-            VwLivroClienteEmprestimo oLivroClienteEmprestimo = _oEmprestimoService.oRepositoryVwClienteEmprestimo.SelecionarPk(id);
-            return View(oLivroClienteEmprestimo);
-        }
-
+     
         public IActionResult Delete(int id)
         {
             _oEmprestimoService.oRepositoryLivroClienteEmprestimo.Excluir(id);
